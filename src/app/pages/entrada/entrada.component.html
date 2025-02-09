@@ -1,0 +1,19 @@
+<h1>Product Management</h1>
+<form [formGroup]="productForm" (submit)="addProduct($event)">
+  <!-- Input para el título -->
+  <input formControlName="title" placeholder="Title" required />
+  <!-- Input para el precio -->
+  <input formControlName="price" type="number" placeholder="Price" required />
+  <!-- Input para cargar imágenes -->
+  <input type="file" (change)="onFileChange($event)" accept="image/*" required />
+  <!-- Botón para enviar el formulario -->
+  <button type="submit">Add Product</button>
+</form>
+<h2>LISTADO </h2>
+<!-- Lista de productos -->
+<div *ngFor="let product of products">
+  <img [src]="apiUrlImagen + product.image" class="card-img-top" style="max-width: 100px;" alt="Post image">
+
+  <span>{{ product.title }} - ${{ product.price }}</span>
+  <button (click)="deleteProduct(product.id)">Delete</button>
+</div>
