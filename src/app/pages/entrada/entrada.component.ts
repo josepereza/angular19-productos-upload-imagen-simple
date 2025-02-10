@@ -62,7 +62,13 @@ this.fetchProducts();  }
     formData.append('price', price!.toString());
     formData.append('image', this.selectedImage);
 
-    fetch(this.apiUrl, {
+   this.productoService.addProducto(formData).subscribe(data=>{
+    this.productForm.reset(); // Reiniciar el formulario
+    this.selectedImage = null; // Limpiar la imagen seleccionada
+    this.fetchProducts(); // Actualizar la lista de productos
+   })
+
+     /* fetch(this.apiUrl, {
       method: 'POST',
       body: formData,
     })
@@ -71,8 +77,8 @@ this.fetchProducts();  }
         this.selectedImage = null; // Limpiar la imagen seleccionada
         this.fetchProducts(); // Actualizar la lista de productos
       })
-      .catch((error) => console.error('Error:', error));
-  }
+      .catch((error) => console.error('Error:', error)); */
+  } 
 
   // Método para manejar el cambio de archivo
   onFileChange(event: Event) {
